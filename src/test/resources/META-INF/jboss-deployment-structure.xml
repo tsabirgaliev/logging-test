@@ -1,7 +1,7 @@
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.0">
 	<deployment>
 		<dependencies>
-			<module name="org.hibernate" />
+			<module name="org.jboss.logging" />
 			<module name="javax.faces.api" slot="1.2"/>
 			<module name="com.sun.jsf-impl" slot="1.2"/>
 		</dependencies>

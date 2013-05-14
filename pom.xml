@@ -15,13 +15,12 @@
 	<repositories>
 		<repository>
 			<id>eap-6-repo</id>
-			<!-- Change this to whatever your eap-6.0.1-maven-repo is -->
-			<url>http://mvn.b2e.kz/content/groups/public</url>
+			<url>http://maven.repository.redhat.com/techpreview/all</url>
 		</repository>
 		
 		<repository>
 			<id>jboss-public-repo</id>
-			<url>https://repository.jboss.org/nexus/content/groups/public</url>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
 		</repository>
 	</repositories>
 

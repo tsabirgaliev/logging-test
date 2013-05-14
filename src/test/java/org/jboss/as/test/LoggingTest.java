@@ -5,10 +5,10 @@ import java.lang.reflect.Field;
 
 import junit.framework.Assert;
 
-import org.hibernate.event.internal.AbstractFlushingEventListener;
-import org.hibernate.internal.CoreMessageLogger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.logging.Logger;
+import org.jboss.logging.LoggerProvider;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
@@ -32,8 +32,7 @@ public class LoggingTest {
 		archive.addAsWebResource("META-INF/jboss-deployment-structure.xml", "META-INF/jboss-deployment-structure.xml");
 
 		File[] libs = Maven.resolver().loadPomFromFile("pom.xml").resolve(
-							"org.jboss.seam:jboss-seam:2.2.2.Final",
-							"com.sun.facelets:jsf-facelets:1.1.15.B1"
+							"org.jboss.seam:jboss-seam:2.2.2.Final"
 						).withoutTransitivity().asFile();
 
 		archive.addAsLibraries(libs);
@@ -41,11 +40,9 @@ public class LoggingTest {
 	}
 
 	@Test
-	public void test() throws Exception {
-    	Field field = AbstractFlushingEventListener.class.getDeclaredField("LOG");
-    	field.setAccessible(true);
-    	CoreMessageLogger LOG = (CoreMessageLogger) field.get(null);
-    	Assert.assertFalse(LOG.isDebugEnabled());
+	public void testArbitraryLogger() throws Exception {
+		Logger LOG = Logger.getLogger( "arbitrary" );
+		Assert.assertFalse(LOG.isDebugEnabled());
 	}
 
 }
